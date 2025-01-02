@@ -16,6 +16,7 @@ const App = () => {
     phoneNumber: "",
     password: "",
     gender: "",
+    allFields: "",
   });
 
   const [isSubmitted, setSubmitted] = useState(false);
@@ -26,44 +27,49 @@ const App = () => {
   };
 
   const validation = () => {
-    const newErrors = { name: "", email: "", phoneNumber: "", password: "", gender: "" };
+    const newErrors = { name: "", email: "", phoneNumber: "", password: "", gender: "", allFields: "" };
     let isValid = true;
 
-    if (!formData.name) {
-      newErrors.name = "Name is required";
+    if (!formData.name && !formData.email && !formData.phoneNumber && !formData.password && !formData.gender) {
+      newErrors.allFields = "All fields are mandatory";
       isValid = false;
-    } else if (!/^[a-zA-Z0-9\s]+$/.test(formData.name)) {
-      newErrors.name = "Name is not valid";
-      isValid = false;
-    }
+    } else {
+      if (!formData.name) {
+        newErrors.name = "Name is required";
+        isValid = false;
+      } else if (!/^[a-zA-Z0-9\s]+$/.test(formData.name)) {
+        newErrors.name = "Name is not alphanumeric";
+        isValid = false;
+      }
 
-    if (!formData.email) {
-      newErrors.email = "Email is required";
-      isValid = false;
-    } else if (!formData.email.includes("@")) {
-      newErrors.email = "Email must contain @.";
-      isValid = false;
-    }
+      if (!formData.email) {
+        newErrors.email = "Email is required";
+        isValid = false;
+      } else if (!formData.email.includes("@")) {
+        newErrors.email = "Email must contain @.";
+        isValid = false;
+      }
 
-    if (!formData.phoneNumber) {
-      newErrors.phoneNumber = "Phone Number is required";
-      isValid = false;
-    } else if (!/^\d+$/.test(formData.phoneNumber)) {
-      newErrors.phoneNumber = "Phone Number must contain only numbers";
-      isValid = false;
-    }
+      if (!formData.phoneNumber) {
+        newErrors.phoneNumber = "Phone Number is required";
+        isValid = false;
+      } else if (!/^\d+$/.test(formData.phoneNumber)) {
+        newErrors.phoneNumber = "Phone Number must contain only numbers.";
+        isValid = false;
+      }
 
-    if (!formData.password) {
-      newErrors.password = "Password is required";
-      isValid = false;
-    } else if (formData.password.length < 6) {
-      newErrors.password = "Password must contain atleast 6 letters";
-      isValid = false;
-    }
+      if (!formData.password) {
+        newErrors.password = "Password is required";
+        isValid = false;
+      } else if (formData.password.length < 6) {
+        newErrors.password = "Password must contain at least 6 letters.";
+        isValid = false;
+      }
 
-    if (!["male", "female", "others"].includes(formData.gender)) {
-      newErrors.gender = "Please identify as male, female, or others.";
-      isValid = false;
+      if (!formData.gender) {
+        newErrors.gender = "Please select a gender";
+        isValid = false;
+      }
     }
 
     setErrors(newErrors);
@@ -80,71 +86,71 @@ const App = () => {
   return (
     <div id="main">
       <div className="validation-form">
-      <form onSubmit={handleSubmit}>
-  <label htmlFor="name">Name:</label>
-  <input
-    type="text"
-    id="name"
-    name="name"
-    data-testid="name"
-    value={formData.name}
-    onChange={handleInputChange}
-  />
-  {error.name && <span>{error.name}</span>}
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            data-testid="name"
+            value={formData.name}
+            onChange={handleInputChange}
+          />
+          {error.name && <span data-testid="error-name">{error.name}</span>}
 
-  <label htmlFor="email">Email:</label>
-  <input
-    type="email"
-    id="email"
-    name="email"
-    data-testid="email"
-    value={formData.email}
-    onChange={handleInputChange}
-  />
-{error.email && <span>{error.email}</span>}
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            data-testid="email"
+            value={formData.email}
+            onChange={handleInputChange}
+          />
+          {error.email && <span data-testid="error-email">{error.email}</span>}
 
-  <label htmlFor="gender">Gender:</label>
-  <select
-    id="gender"
-    name="gender"
-    value={formData.gender}
-    onChange={handleInputChange}
-    data-testid="gender"
-  >
-    <option value="male">Male</option>
-    <option value="female">Female</option>
-    <option value="other">Other</option>
-  </select>
+          <label htmlFor="gender">Gender:</label>
+          <select
+            id="gender"
+            name="gender"
+            data-testid="gender"
+            value={formData.gender}
+            onChange={handleInputChange}
+          >
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+          {error.gender && <span data-testid="error-gender">{error.gender}</span>}
 
-  <label htmlFor="phoneNumber">Phone Number:</label>
-  <input
-    type="text"
-    id="phoneNumber"
-    name="phoneNumber"
-    data-testid="phoneNumber"
-    value={formData.phoneNumber}
-    onChange={handleInputChange}
-  />
-{error.phoneNumber && <span>{error.phoneNumber}</span>}
+          <label htmlFor="phoneNumber">Phone Number:</label>
+          <input
+            type="text"
+            id="phoneNumber"
+            name="phoneNumber"
+            data-testid="phoneNumber"
+            value={formData.phoneNumber}
+            onChange={handleInputChange}
+          />
+          {error.phoneNumber && <span data-testid="error-phoneNumber">{error.phoneNumber}</span>}
 
-  <label htmlFor="password">Password:</label>
-  <input
-    type="password"
-    id="password"
-    name="password"
-    data-testid="password"
-    value={formData.password}
-    onChange={handleInputChange}
-  />
-{error.password && <span>{error.password}</span>}
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            data-testid="password"
+            value={formData.password}
+            onChange={handleInputChange}
+          />
+          {error.password && <span data-testid="error-password">{error.password}</span>}
 
+          <button type="submit" data-testid="submit">Submit</button>
+        </form>
 
-  <button type="submit" data-testid="submit">Submit</button>
-</form>
+        {error.allFields && <span data-testid="error-allFields">{error.allFields}</span>}
 
-
-{isSubmitted && <h2>Hello {formData.email.split("@")[0].toUpperCase()}</h2>}
-
+        {isSubmitted && <h2>Hello {formData.email.split("@")[0].toUpperCase()}</h2>}
       </div>
     </div>
   );
