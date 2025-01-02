@@ -90,7 +90,7 @@ const App = () => {
     value={formData.name}
     onChange={handleInputChange}
   />
-  {error.name && <p>{error.name}</p>}
+  {error.name && <span>{error.name}</span>}
 
   <label htmlFor="email">Email:</label>
   <input
@@ -101,7 +101,7 @@ const App = () => {
     value={formData.email}
     onChange={handleInputChange}
   />
-  {error.email && <p>{error.email}</p>}
+{error.email && <span>{error.email}</span>}
 
   <label htmlFor="gender">Gender:</label>
   <select
@@ -113,7 +113,7 @@ const App = () => {
   >
     <option value="male">Male</option>
     <option value="female">Female</option>
-    <option value="others">Others</option>
+    <option value="other">Other</option>
   </select>
 
   <label htmlFor="phoneNumber">Phone Number:</label>
@@ -125,7 +125,7 @@ const App = () => {
     value={formData.phoneNumber}
     onChange={handleInputChange}
   />
-  {error.phoneNumber && <p>{error.phoneNumber}</p>}
+{error.phoneNumber && <span>{error.phoneNumber}</span>}
 
   <label htmlFor="password">Password:</label>
   <input
@@ -136,13 +136,15 @@ const App = () => {
     value={formData.password}
     onChange={handleInputChange}
   />
-  {error.password && <p>{error.password}</p>}
+{error.password && <span>{error.password}</span>}
+
 
   <button type="submit" data-testid="submit">Submit</button>
 </form>
 
 
-        {isSubmitted && <h3>Hello {formData.email.split("@")[0]}</h3>}
+{isSubmitted && <h2>Hello {formData.email.split("@")[0]}</h2>}
+
       </div>
     </div>
   );
