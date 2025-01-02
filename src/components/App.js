@@ -80,68 +80,67 @@ const App = () => {
   return (
     <div id="main">
       <div className="validation-form">
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            data-test-id="name"
-          />
-          {error.name && <p className="error">{error.name}</p>}
+      <form onSubmit={handleSubmit}>
+  <label htmlFor="name">Name:</label>
+  <input
+    type="text"
+    id="name"
+    name="name"
+    data-testid="name"
+    value={formData.name}
+    onChange={handleInputChange}
+  />
+  {error.name && <p>{error.name}</p>}
 
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            data-test-id="email"
-          />
-          {error.email && <p className="error">{error.email}</p>}
+  <label htmlFor="email">Email:</label>
+  <input
+    type="email"
+    id="email"
+    name="email"
+    data-testid="email"
+    value={formData.email}
+    onChange={handleInputChange}
+  />
+  {error.email && <p>{error.email}</p>}
 
-          <label htmlFor="gender">Gender:</label>
-          <select
-            id="gender"
-            name="gender"
-            value={formData.gender}
-            onChange={handleInputChange}
-            data-test-id="gender"
-          >
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="others">Others</option>
-          </select>
+  <label htmlFor="gender">Gender:</label>
+  <select
+    id="gender"
+    name="gender"
+    value={formData.gender}
+    onChange={handleInputChange}
+    data-testid="gender"
+  >
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+    <option value="others">Others</option>
+  </select>
 
-          <label htmlFor="phoneNumber">Phone Number:</label>
-          <input
-            type="text"
-            id="phoneNumber"
-            name="phoneNumber"
-            value={formData.phoneNumber}
-            onChange={handleInputChange}
-            data-test-id="phoneNumber"
-          />
-          {error.phoneNumber && <p className="error">{error.phoneNumber}</p>}
+  <label htmlFor="phoneNumber">Phone Number:</label>
+  <input
+    type="text"
+    id="phoneNumber"
+    name="phoneNumber"
+    data-testid="phoneNumber"
+    value={formData.phoneNumber}
+    onChange={handleInputChange}
+  />
+  {error.phoneNumber && <p>{error.phoneNumber}</p>}
 
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleInputChange}
-            data-test-id="password"
-          />
-          {error.password && <p className="error">{error.password}</p>}
+  <label htmlFor="password">Password:</label>
+  <input
+    type="password"
+    id="password"
+    name="password"
+    data-testid="password"
+    value={formData.password}
+    onChange={handleInputChange}
+  />
+  {error.password && <p>{error.password}</p>}
 
-          <button data-test-id="submit" type="submit">
-            Submit
-          </button>
-        </form>
+  <button type="submit" data-testid="submit">Submit</button>
+</form>
+
 
         {isSubmitted && <h3>Hello {formData.email.split("@")[0]}</h3>}
       </div>
