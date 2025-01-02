@@ -49,7 +49,7 @@ const App = () => {
       newErrors.phoneNumber = "Phone Number is required";
       isValid = false;
     } else if (!/^\d+$/.test(formData.phoneNumber)) {
-      newErrors.phoneNumber = "Phone Number must contain only numbers.";
+      newErrors.phoneNumber = "Phone Number must contain only numbers";
       isValid = false;
     }
 
@@ -57,7 +57,7 @@ const App = () => {
       newErrors.password = "Password is required";
       isValid = false;
     } else if (formData.password.length < 6) {
-      newErrors.password = "Password must contain at least 6 characters.";
+      newErrors.password = "Password must contain atleast 6 letters";
       isValid = false;
     }
 
@@ -143,7 +143,7 @@ const App = () => {
 </form>
 
 
-{isSubmitted && <h2>Hello {formData.email.split("@")[0]}</h2>}
+{isSubmitted && <h2>Hello {formData.email.split("@")[0].toUpperCase()}</h2>}
 
       </div>
     </div>
